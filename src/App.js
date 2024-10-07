@@ -20,7 +20,7 @@ import Kids from "./pages/Kids";
 import Acceseories from "./pages/Acceseories";
 import Fragrances from "./pages/Fragrances";
 
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 
