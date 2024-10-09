@@ -20,8 +20,10 @@ import Kids from "./pages/Kids";
 import Acceseories from "./pages/Acceseories";
 import Fragrances from "./pages/Fragrances";
 
-import 'bootstrap/dist/css/bootstrap.css';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import ProductDescription from "./pages/ProductDescription";
+import Signup from "./pages/Signup";
 
 
 
@@ -40,6 +42,9 @@ function App() {
   <Route path="/Kids"element={<Kids/>}/>
   <Route path="/Acceseories"element={<Acceseories/>}/>
   <Route path="/Fragrances"element={<Fragrances/>}/>
+  <Route path="/Product/:id" element={<ProductDescription/>}/>
+   <Route path="/Signup" element={<Signup/>}/>
+
   </Routes>
 
     <ToastContainer

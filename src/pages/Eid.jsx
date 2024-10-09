@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import Loader from '../component/Loader'
+import { Link } from 'react-router-dom'
 
 const Eid = () => {
   const [Products,setProducts]=useState([])
@@ -15,16 +16,15 @@ const Eid = () => {
   useEffect(()=>{
     fatchData()
   },[])
-  console.log(loader)
-  console.log(Products)
+
   return(
   <>
   {
-    loader ? <Loader/>: 
-    ( <div className='d-flex flex-wrap justify-content-evenly gap-4'>
+    loader ? <Loader/>:( <div className='d-flex flex-wrap justify-content-evenly gap-4'>
       {
         Products.map((Product)=>{
           return(
+            <Link to={`/Product/${Product.id}`}>
             <div class="card" style={{width: "35rem"}}>
   <img src={Product.image} class="card-img-top" style={{height:"100px" , width:"100px"}} alt="..."/>
   <div class="card-body">
@@ -34,7 +34,8 @@ const Eid = () => {
     <p>Item Sold:{Product.rating.count}</p>
   </div>
   </div>
-          )
+  </Link>
+    )
         })
       }
   
