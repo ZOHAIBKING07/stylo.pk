@@ -8,8 +8,9 @@ const Eid = () => {
   const [loader,setLoader]=useState(false);
   const fatchData=async ()=>{
   setLoader(true)
-    const response =await axios.get("https://fakestoreapi.com/Products")
-    setProducts(response.data)
+    const response =await axios.get("http://localhost:8082/api/admin/product?category=Eid")
+    setProducts(response.data.Products)
+    console.log(response)
   setLoader(false)
   }
   
@@ -24,14 +25,16 @@ const Eid = () => {
       {
         Products.map((Product)=>{
           return(
-            <Link to={`/Product/${Product.id}`}>
+            <Link to={`/Product/${Product._id}`}>
+                                          {/* 35 */}
             <div class="card" style={{width: "35rem"}}>
-  <img src={Product.image} class="card-img-top" style={{height:"100px" , width:"100px"}} alt="..."/>
+  <img src={Product.thumbnail} class="card-img-top" style={{height:"100px" , width:"100px"}} alt="..."/>
   <div class="card-body">
     <h5 class="card-title">{Product.title}</h5>
-    <p>{Product.rating.rate}</p>
+    {/* <p>{Product.rating.rate}</p> */}
+    {/* <p>{Product.description}</p> */}
     <button className="btn btn-danger">{Product.price}</button>
-    <p>Item Sold:{Product.rating.count}</p>
+    {/* <p>Item Sold:{Product.rating.count}</p> */}
   </div>
   </div>
   </Link>
