@@ -18,23 +18,50 @@
 // };
 
 
+const Product=require ("../models/product.model")
 
- const Product=require("../models/product.model")
+
+exports.store = async (req, res) => {
+    try {
+        // Check if req.file exists and assign the filename to the thumbnail field
+        if (req.file) {
+            req.body.thumbnail = req.file.filename;
+        } else {
+            return res.status(400).json({ status: 400, message: "Thumbnail is required." });
+        }
+
+        // Ensure that title is also present
+        if (!req.body.title) {
+            return res.status(400).json({ status: 400, message: "Title is required." });
+        }
+
+        console.log(req.body); // Log the full request body for debugging
+
+        const product = await Product.create(req.body);
+        res.json({ status: 200, message: "Product created successfully", product });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ status: 500, message: "Internal server error", error: err.message });
+    }
+};
 
 
- exports.store=async(req,res)=>{
-     try{
-        // console.log(req,body)
-        // console.log("Shahzaib javed")
-    const product=await Product.create(req.body)
-        res.json({status:200,message:"Product created successfully",product})
+//  exports.store = async (req, res) => {
+//      try{
+//         // req.body.title=req.file.filename;
+//         // req.body.thumbnail=req.file.filename;
+//         console.log(req.file.filename)
+//         // console.log(req,body)
+//         // console.log("Shahzaib javed")
+//     const product=await Product.create(req.body)
+//         res.json({status:200,message:"Product created successfully",product})
 
- }
- catch(err){
-     console.log(err);
- }
+//  }
+//  catch(err){
+//      console.log(err);
+//  }
 
- }
+//  }
 
  exports.index=async(req,res)=>{
     try{
@@ -43,7 +70,11 @@
         if(category){
             query.category=category;
         }
-   const Products=await Product.find(query)
+      
+
+   const Products=await Product.find(query);
+
+
        res.json({status:200,message:"Products fetched successfully",Products})
 
 }
@@ -52,6 +83,30 @@ catch(err){
 }
 
 }
+
+//  exports.index=async(req,res)=>{
+//     try{
+//         const {category,search}=req.query;
+//         console.log(search)
+//         const query={};
+//         if(category){
+//             query.category=category;
+//         }
+//         if(search){
+//             query.title=search;
+//         }
+
+//    const Products=await Product.find(query);
+
+
+//        res.json({status:200,message:"Products fetched successfully",Products})
+
+// }
+// catch(err){
+//     console.log(err);
+// }
+
+// }
 
 exports.get=async(req,res)=>{
     try{

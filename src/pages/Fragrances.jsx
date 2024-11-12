@@ -9,4 +9,4 @@ const Fragrances = () => {
   )
 }
 
-export default Fragrances
+export default Fragrances;

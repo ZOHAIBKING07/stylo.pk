@@ -1,10 +1,14 @@
-import React from 'react'
+import axios from 'axios'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
+
 const Navbar = () => {
+
   return (
     <div>
+     
       <ul className='navber'>
-      <li style={{color:"red"}}><Link className='link' to={"/"}>Sale</Link></li>
+      <li><Link className='link' to={"/"}>Sale</Link></li>
       <li><Link className='link' to={"/Eid"}>Eid</Link></li>
         <li ><Link className='link' to={"/Summer24"}>Summer'24</Link></li>
         <li><Link className='link' to={"/WomanShoes"}>Woman Shoes</Link></li>

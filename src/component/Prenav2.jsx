@@ -15,6 +15,8 @@ const Prenav2 = () => {
     
      </div>
     <Link to="/Signup"><button className='btn btn-primary'>Signup</button></Link>
+    <Link to="/login"><button className='btn btn-primary'>Login</button></Link>
+
     </div>
   )
 }
